@@ -1,0 +1,567 @@
+/* ==========================================================================
+   Body Scent — Premium Minimal Theme
+   โทน: ขาว-ครีม-เบจเข้ม / accent ทอง-บรอนซ์อ่อน
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Thai:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500&display=swap");
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* พื้นหลัง */
+  --c-white: #fdfcfa;
+  --c-cream: #f6f1e8;
+  --c-sand: #e9dfcf;
+  --c-beige-deep: #cbb99c;
+
+  /* ตัวอักษร */
+  --c-ink: #2b2620;
+  --c-ink-soft: #5c5348;
+  --c-ink-mute: #8a8073;
+
+  /* Accent ทอง/บรอนซ์อ่อน */
+  --c-gold: #a98a54;
+  --c-gold-deep: #8a6f3f;
+  --c-gold-soft: #d8c7a1;
+
+  /* เส้นขอบ */
+  --c-line: #d9ccb6;
+  --c-line-strong: #2b2620;
+
+  /* สีประจำ mood (ใช้เป็นจุดเล็กๆ เท่านั้น) */
+  --mood-fresh: #2f5d46;
+  --mood-sweet: #8e6bb0;
+  --mood-confident: #3d4b5c;
+  --mood-romance: #d98c8c;
+
+  /* ฟอนต์ */
+  --f-display: "Cormorant Garamond", "Noto Serif Thai", "Times New Roman", serif;
+  --f-heading-th: "Noto Serif Thai", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Noto Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  /* ระยะห่าง */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2.5rem;
+  --s-5: 4rem;
+  --s-6: 6rem;
+  --s-7: 9rem;
+
+  --container: 1120px;
+  --radius: 2px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-family: var(--f-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--s-2);
+  font-family: var(--f-display);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: var(--c-ink);
+}
+
+h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.2; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+h3 { font-size: 1.35rem; }
+
+p {
+  margin: 0 0 var(--s-2);
+  color: var(--c-ink-soft);
+}
+
+:focus-visible {
+  outline: 1px solid var(--c-gold-deep);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--c-gold-soft);
+  color: var(--c-ink);
+}
+
+/* ---------- 3. Layout ---------- */
+.container {
+  width: min(100% - 3rem, var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--s-6);
+}
+
+.section--cream { background: var(--c-cream); }
+.section--sand  { background: var(--c-sand); }
+
+.section__head {
+  max-width: 36rem;
+  margin: 0 auto var(--s-5);
+  text-align: center;
+}
+
+.section__head p {
+  color: var(--c-ink-mute);
+}
+
+/* เส้นทองสั้นๆ ใต้หัวข้อ */
+.rule {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: var(--s-3) auto;
+  background: var(--c-gold);
+  border: 0;
+}
+
+.rule--left { margin-inline: 0; }
+
+/* ---------- 4. Header / Nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 252, 250, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: 1.25rem;
+}
+
+.logo {
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--c-ink);
+}
+
+.nav {
+  display: flex;
+  gap: var(--s-4);
+  font-size: 0.9rem;
+  color: var(--c-ink-soft);
+}
+
+.nav a {
+  padding-block: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.nav a:hover {
+  color: var(--c-ink);
+  border-color: var(--c-gold);
+}
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.95rem 2.4rem;
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  color: var(--c-ink);
+  background: transparent;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+
+.btn:hover {
+  background: var(--c-ink);
+  color: var(--c-cream);
+}
+
+.btn--gold {
+  border-color: var(--c-gold-deep);
+  color: var(--c-gold-deep);
+}
+
+.btn--gold:hover {
+  background: var(--c-gold-deep);
+  border-color: var(--c-gold-deep);
+  color: var(--c-white);
+}
+
+.btn--solid {
+  background: var(--c-ink);
+  color: var(--c-cream);
+}
+
+.btn--solid:hover {
+  background: var(--c-gold-deep);
+  border-color: var(--c-gold-deep);
+}
+
+.btn--sm {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.82rem;
+}
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  padding-block: var(--s-7) var(--s-6);
+  background: linear-gradient(180deg, var(--c-cream) 0%, var(--c-white) 100%);
+  text-align: center;
+}
+
+.hero__inner {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.hero p {
+  max-width: 32rem;
+  margin: 0 auto var(--s-4);
+  font-size: 1.05rem;
+  color: var(--c-ink-soft);
+}
+
+/* ---------- 7. Mood dot (สีประจำ mood แบบแตะเบาๆ) ---------- */
+[data-mood="fresh"]     { --mood: var(--mood-fresh); }
+[data-mood="sweet"]     { --mood: var(--mood-sweet); }
+[data-mood="confident"] { --mood: var(--mood-confident); }
+[data-mood="romance"]   { --mood: var(--mood-romance); }
+
+.mood-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.6rem;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: var(--mood, var(--c-gold));
+}
+
+/* เส้นสั้นๆ ใต้หัวข้อสีตาม mood */
+.mood-line {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin: var(--s-2) 0;
+  background: var(--mood, var(--c-gold));
+  border: 0;
+}
+
+/* ---------- 8. Filter ---------- */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-1) var(--s-3);
+  margin-bottom: var(--s-5);
+}
+
+.filter__btn {
+  padding: 0.5rem 0.25rem;
+  font-family: var(--f-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--c-ink-mute);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.filter__btn:hover {
+  color: var(--c-ink);
+}
+
+.filter__btn.is-active,
+.filter__btn[aria-pressed="true"] {
+  color: var(--c-ink);
+  border-bottom-color: var(--c-gold);
+}
+
+/* ---------- 9. Product grid & card ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--s-5) var(--s-4);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.product-card__media {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--c-cream);
+  border: 1px solid var(--c-line);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.product-card:hover .product-card__media img {
+  transform: scale(1.03);
+}
+
+.product-card__body {
+  padding-top: var(--s-3);
+}
+
+.product-card__mood {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--c-ink-mute);
+  letter-spacing: 0.06em;
+}
+
+.product-card__name {
+  margin-bottom: 0.25rem;
+  font-family: var(--f-heading-th);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.product-card__meta {
+  margin-bottom: var(--s-1);
+  font-size: 0.85rem;
+  color: var(--c-ink-mute);
+}
+
+.product-card__desc {
+  margin-bottom: var(--s-2);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--c-line);
+}
+
+.price {
+  font-family: var(--f-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--c-gold-deep);
+}
+
+.price small {
+  margin-left: 0.2rem;
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--c-ink-mute);
+}
+
+/* ---------- 10. Mood / feature blocks ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-4);
+}
+
+.feature {
+  padding: var(--s-4) var(--s-3);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+}
+
+.feature h3 {
+  font-family: var(--f-heading-th);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* ---------- 11. Form ---------- */
+.field {
+  margin-bottom: var(--s-3);
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--c-ink-soft);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-family: var(--f-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--c-ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--c-line);
+  border-radius: 0;
+  transition: border-color 0.3s var(--ease);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--c-gold-deep);
+}
+
+/* ---------- 12. Footer ---------- */
+.site-footer {
+  padding-block: var(--s-5);
+  background: var(--c-cream);
+  border-top: 1px solid var(--c-line);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--c-ink-mute);
+}
+
+.site-footer .logo {
+  display: block;
+  margin-bottom: var(--s-2);
+}
+
+/* ---------- 13. Utilities ---------- */
+.text-center { text-align: center; }
+.text-gold   { color: var(--c-gold-deep); }
+.mt-4        { margin-top: var(--s-4); }
+.mb-4        { margin-bottom: var(--s-4); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- 14. Responsive ---------- */
+@media (max-width: 900px) {
+  .section { padding-block: var(--s-5); }
+  .hero    { padding-block: var(--s-6) var(--s-5); }
+}
+
+@media (max-width: 640px) {
+  :root { --container: 100%; }
+
+  .container { width: min(100% - 2.5rem, var(--container)); }
+
+  .site-header__inner {
+    flex-direction: column;
+    gap: var(--s-1);
+    padding-block: 1rem;
+  }
+
+  .nav {
+    gap: var(--s-3);
+    font-size: 0.85rem;
+  }
+
+  .section { padding-block: var(--s-5); }
+  .section__head { margin-bottom: var(--s-4); }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-4) var(--s-2);
+  }
+
+  .product-card__desc { display: none; }
+  .product-card__name { font-size: 0.95rem; }
+  .product-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-1);
+  }
+
+  .btn { width: 100%; text-align: center; }
+  .btn--sm { width: auto; }
+}
+
+@media (max-width: 380px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
